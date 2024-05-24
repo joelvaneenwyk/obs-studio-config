@@ -2,6 +2,8 @@
 
 OBS Studio configuration that also sets up for local builds.
 
+> See [Building OBS StreamFX](./docs/building.md)
+
 ## Forks
 
 - [joelvaneenwyk/obs-studio: OBS Studio - Free and open source software for live streaming and screen recording](https://github.com/joelvaneenwyk/obs-studio)
