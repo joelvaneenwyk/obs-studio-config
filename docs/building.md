@@ -1,5 +1,7 @@
 # Building
 
+> Source: [BUILDING.md](https://raw.githubusercontent.com/Xaymar/obs-StreamFX/root/BUILDING.md)
+
 This document intends to guide you through the process of building StreamFX. It requires understanding of the tools used, and may require you to learn tools yourself before you can advance further in the guide. It is intended to be used by developers and contributors.
 
 ## Building Bundled
