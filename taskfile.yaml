@@ -4,6 +4,7 @@ version: "3"
 
 vars:
   SLASH: '{{fromSlash "/"}}'
+  REPO_OBS_STREAM_FX: "{{.TASKFILE_DIR}}/external/obs-StreamFX"
 
 output:
   group:
@@ -13,8 +14,20 @@ output:
 tasks:
   default:
     cmds:
-      - echo "{{.GREETING}}"
-    silent: true
+      - task: pull
+
+  pull:
+    deps: [clone]
+    cmds:
+      - git -C "{{.REPO_OBS_STREAM_FX}}" pull --rebase --autostash
+    preconditions:
+      - test -d "{{.REPO_OBS_STREAM_FX}}"
+
+  clone:
+    cmds:
+      - gh repo clone "joelvaneenwyk/obs-StreamFX" "{{.REPO_OBS_STREAM_FX}}"
+    generates:
+      - "{{.REPO_OBS_STREAM_FX}}"
 
   _detach:
     requires:
