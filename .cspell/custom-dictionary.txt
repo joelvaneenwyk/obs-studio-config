@@ -1,2 +1,14 @@
 # Custom Dictionary Words
 cmds
+Inno
+libavcodec
+libavdevice
+libavfilter
+libavformat
+libavutil
+libqt
+libswresample
+libswscale
+streamfx
+toread
+Xaymar

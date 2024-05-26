@@ -1,6 +1,6 @@
 # OBS Studio Configuration
 
-OBS Studio configuration that also sets up for local builds.
+OBS Studio configuration that Can be used to build any and all branches of OBS studio and obs-streamFX. This is also only necessary because restrictions on building and distributing using visual studio.
 
 > See [Building OBS StreamFX](./docs/building.md)
 
