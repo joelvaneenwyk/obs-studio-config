@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
 
 function main() {
+    set -eax -o pipefail
+
     obs_studio_config="$(cd "$(dirname "$(realpath "${BASH_SOURCE[0]}")")" &>/dev/null && cd ../ && pwd)"
     obs_streamfx="${obs_studio_config}/external/obs-StreamFX"
+
+    cd "${obs_streamfx}" || true
+    git submodule update --init --recursive
 
     # - name: "Clone"
     # uses: actions/checkout@v4
@@ -18,13 +23,13 @@ function main() {
     buildspec="${obs_streamfx}/third-party/obs-studio/buildspec.json"
 
     # Prebuilt Dependencies Version
-    IFS=$'\n' buildspecdata=($(node tools/buildspec.js "${buildspec}" "prebuilt" "windows-x64"))
+    IFS=$'\n' buildspecdata=($(node ${obs_streamfx}/tools/buildspec.js "${buildspec}" "prebuilt" "windows-x64"))
     echo "obs_deps_version=${buildspecdata[0]}" >> "$GITHUB_ENV"
     echo "obs_deps_hash=${buildspecdata[1]}" >> "$GITHUB_ENV"
     echo "obs_deps_url=${buildspecdata[2]}" >> "$GITHUB_ENV"
 
     # Qt Version
-    IFS=$'\n' buildspecdata=($(node tools/buildspec.js "${buildspec}" "qt${{ matrix.qt }}" "windows-x64"))
+    IFS=$'\n' buildspecdata=($(node ${obs_streamfx}/tools/buildspec.js "${buildspec}" "qt${{ matrix.qt }}" "windows-x64"))
     echo "qt_version=${buildspecdata[0]}" >> "$GITHUB_ENV"
     echo "qt_hash=${buildspecdata[1]}" >> "$GITHUB_ENV"
     echo "qt_url=${buildspecdata[2]}" >> "$GITHUB_ENV"
